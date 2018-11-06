@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<input type="button" v-on:click="lazy" value="懒起来" />
+			<input type="button" v-on:click="stop" value="别懒了" />
+			<h4>{{msg}}</h4>
+		</div>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app=new Vue({
+				el:"#app",
+				data:{
+					msg:"别懒了，没有时间了",
+					intervalId:null
+				},
+				methods:{
+					lazy(){
+						//var my=this;
+						//console.log(this.msg);
+						if(this.intervalId!=null){
+							return;
+						}
+						this.intervalId=setInterval(()=>{
+							var start=this.msg.substring(0,1);
+							var end=this.msg.substring(1);
+						 this.msg=end+start;
+						},400)
+						
+					},
+					stop(){
+						clearInterval(this.intervalId);
+						this.intervalId=null					}
+				},
+			});
+		</script>
+	</body>
+</html>
